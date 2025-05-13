@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres
+    container_name: exptracker-postgres
+    environment:
+      POSTGRES_DB: exptracker_db
+      POSTGRES_USER: exptracker_user
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    networks:
+      - exptracker-network
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: exptracker-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@email.com
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    ports:
+      - "15432:80"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
+
+networks:
+  exptracker-network:
+
