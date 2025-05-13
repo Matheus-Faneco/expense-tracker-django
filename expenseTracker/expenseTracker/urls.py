@@ -20,7 +20,8 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', include('user.urls')),
+    path('hello/', include('user.urls')), #apenas debug
+    path('expense/', include('expenses.urls')),
 
     #--endpoint dos tokens--
 
